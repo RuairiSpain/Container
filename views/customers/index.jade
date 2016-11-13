@@ -3,6 +3,8 @@ extends ../layout
 block content
     h1.
          #{title}
+    div
+            a(href='/customers/new') New
     ul
         - each customer, i in customers
             li

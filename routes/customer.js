@@ -1,4 +1,4 @@
-ar express = require('express').Router(),
+var router = require('express').Router(),
     mongoose = require('mongoose'), //mongo connection
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'); //used to manipulate POST
@@ -19,7 +19,7 @@ router.use(methodOverride(function(req, res) {
 
 
 function DateToJSON(date) {
-    retrun date.substring(0, date.toISOString().indexOf('T'));
+    return new Date(date).toISOString().replace(/T/, ' ').replace(/\..+/, '')
 }
 
 
@@ -94,7 +94,7 @@ router.get('/new', function(req, res) {
 
 // route middleware to validate :id
 router.param('id', function(req, res, next, id) {
-    //console.log('validating ' + id + ' exists');
+    console.log('validating ' + id + ' exists', id);
     //find the ID in the Database
     Customer.findById(id, function(err, customer) {
         //if it isn't found, we are going to repond with 404
@@ -131,7 +131,7 @@ router.route('/:id').get(function(req, res) {
             console.log('GET Error: There was a problem retrieving: ' + err);
         } else {
             console.log('GET Retrieving ID: ' + customer._id);
-            var customerdob = DateToJSON(customer.dob);
+            //var customerdob = DateToJSON(customer.dob);
             res.format({
                 html: function() {
                     res.render('customers/show', {
@@ -155,7 +155,7 @@ router.route('/:id/edit').get(function(req, res) {
             } else {
                 //Return the customer
                 console.log('GET Retrieving ID: ' + customer._id);
-                var customerdob = DateToJSON(customer.dob);
+                //var customerdob = DateToJSON(customer.dob);
                 res.format({
                     //HTML response will render the 'edit.jade' template
                     html: function() {

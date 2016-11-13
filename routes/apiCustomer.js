@@ -2,8 +2,9 @@ var router = require('express').Router();
 var HttpStatus = require('http-status-codes');
 var Customer = require('../model/customer');
 
+
 function DateToJSON(date) {
-    retrun date.substring(0, date.toISOString().indexOf('T'));
+    return new Date(date).toISOString().replace(/T/, ' ').replace(/\..+/, '')
 }
 
 router.route('/customer/:id').get(function(req, res) {
@@ -15,7 +16,7 @@ router.route('/customer/:id').get(function(req, res) {
     });
 });
 
-function pagination(req){
+function pagination(req) {
     var page = parseInt(req.query.page) || 0;
     var size = parseInt(req.query.size) || 0;
     var skip = page > 0 ? ((page - 1) * size) : 0;
@@ -23,7 +24,7 @@ function pagination(req){
     return { skip: skip, limit: size };
 }
 
-function filter(req){
+function filter(req) {
     return req.body || null;
 }
 

@@ -7,12 +7,12 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect('mongodb://mongo:27017/webapp'); // process.env.MONGO_URL');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var customers = require('./routes/customers');
-var apiCustomers = require('./routes/apiCustomers');
+var customers = require('./routes/customer');
+var apiCustomers = require('./routes/apiCustomer');
 
 var app = express();
 
