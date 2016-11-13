@@ -16,9 +16,9 @@ services:
       - postgres
       - redis
     environment:
-      - PORT: 3000                                                   #In Node, can get Web port with process.env.PORT app.listen(process.env.PORT || 3000);
-      - MONGO_URL: mongodb://mongo:27017                             #In Node, can connect to Mongo server with URL:  process.env.MONGO_URL
-      - POSTGRES_URL: postgres://docker:pw1234@postgres:5432/docker  #In Node, can get Web port with pg.connect(conString, function(err, client, done) {});
+      - PORT= 3000                                                   #In Node, can get Web port with process.env.PORT app.listen(process.env.PORT || 3000);
+      - MONGO_URL= mongodb://mongo:27017/webapp                      #In Node, can connect to Mongo server with URL:  process.env.MONGO_URL
+      - POSTGRES_URL= postgres://docker:pw1234@postgres:5432/docker  #In Node, can get Web port with pg.connect(conString, function(err, client, done) {});
 #remove ALL lines below when going to PROD    
       - REMOTE_DEBUGGING  
     volumes :
@@ -28,8 +28,8 @@ services:
   postgres:      
     image: postgres
     environment:
-       - POSTGRES_PASSWORD: pw1234
-       - POSTGRES_USER: docker
+       - POSTGRES_PASSWORD= pw1234
+       - POSTGRES_USER= docker
     #remove ALL lines below when going to PROD
     ports: 
       - "5432"
