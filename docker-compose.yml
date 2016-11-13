@@ -9,17 +9,18 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-      - "5858:5858"
+#remove SINGLE line below when going to PROD
+      - "5858"
     links:
       - mongo
       - postgres
       - redis
     environment:
-      - REMOTE_DEBUGGING
-      - PORT=3000                                                   #In Node, can get Web port with process.env.PORT app.listen(process.env.PORT || 3000);
-      - MONGO_URL=mongodb://mongo/user                              #In Node, can connect to Mongo server with URL:  process.env.MONGO_URL
-      - POSTGRES_URL=postgres://docker:pw1234@postgres:5432/docker  #In Node, can get Web port with pg.connect(conString, function(err, client, done) {});
-      
+      - PORT: 3000                                                   #In Node, can get Web port with process.env.PORT app.listen(process.env.PORT || 3000);
+      - MONGO_URL: mongodb://mongo/user                              #In Node, can connect to Mongo server with URL:  process.env.MONGO_URL
+      - POSTGRES_URL: postgres://docker:pw1234@postgres:5432/docker  #In Node, can get Web port with pg.connect(conString, function(err, client, done) {});
+#remove ALL lines below when going to PROD    
+      - REMOTE_DEBUGGING  
     volumes :
       - ./:/src
 
@@ -27,19 +28,20 @@ services:
   postgres:      
     image: postgres
     environment:
-       - POSTGRES_PASSWORD=pw1234
-       - POSTGRES_USER=docker
+       - POSTGRES_PASSWORD: pw1234
+       - POSTGRES_USER: docker
     #remove ALL lines below when going to PROD
     ports: 
-      - "5432:5432"
+      - "5432"
+    mem_limit: 100m
 
   mongo:
     image: mongo
     #remove ALL lines below when going to PROD
     command: "--smallfiles --logpath=/dev/null"
-    mem_limit: 100MB
+    mem_limit: 100m
     ports:
-     - "27017:27017"
+     - "27017"
 
   redis:
     image: redis     
