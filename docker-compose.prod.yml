@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  a2:
+    image: a2
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:3000"

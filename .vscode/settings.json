@@ -1,5 +1,9 @@
 {
-  "files.associations": {
-    "dockerfile.*": "dockerfile"
-  }
+    "files.associations": {
+        "dockerfile.*": "dockerfile"
+    },
+    "search.excludeFolders": [
+        ".git",
+        "node_modules"
+    ]
 }
