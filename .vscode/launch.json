@@ -11,6 +11,6 @@
         "outDir": null,
         "localRoot": "${workspaceRoot}",
         "remoteRoot": "/src",
-        "timeout": 30000
+        "timeout": 10000
     }]
 }
