@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://mongo:27017');
 
 app.get('/', function(req, res) {
-    res.send('Hello World-changed-1 ');
+    res.send('Hello World');
 });
 
 
